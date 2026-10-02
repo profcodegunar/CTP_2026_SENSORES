@@ -1,0 +1,7 @@
+MANUAL CTP - SENSORES APLICADOS A CAMARAS DE SEGURIDAD
+
+1. Descomprima el ZIP.
+2. Abra index.html en Chrome o Edge.
+3. El material es responsive y funciona localmente.
+
+Instructor: Ing. Gunar Castro Iñigo

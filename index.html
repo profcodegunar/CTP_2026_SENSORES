@@ -1,0 +1,125 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CTP | Sensores aplicados a cámaras de seguridad</title><link rel="stylesheet" href="assets/style.css"></head><body>
+<header><div class="nav"><img src="assets/logo_ctp.png" class="logo" alt="CTP"><div class="brand">CTP | Formación Técnica</div><div class="navlinks"><a href="#cctv">CCTV</a><a href="#modelos">Modelos</a><a href="#arduino">Arduino</a><a href="#proyecto">Proyecto</a></div></div></header>
+<section class="hero"><div class="wrap"><div class="eyebrow">Redes, videovigilancia y electrónica aplicada</div><h1>Sensores aplicados a cámaras de seguridad</h1><p>Manual técnico interactivo para comprender los sensores utilizados en videovigilancia y reproducir su lógica de detección mediante Arduino UNO, sensor ultrasónico, semáforo LED y buzzer piezoeléctrico.</p></div></section>
+<main><div class="wrap"><div class="grid">
+
+<section class="card"><div class="kicker">Objetivo de la sesión</div><h2>Competencia a desarrollar</h2><p class="lead">El estudiante reconocerá los principales sensores y métodos de detección presentes en sistemas de videovigilancia, diferenciará detección física de análisis de video y construirá un prototipo de alerta por distancia con Arduino UNO.</p><div class="note"><strong>Enfoque técnico:</strong> no se estudia el sensor de forma aislada. Se analiza como parte de un sistema: detección, procesamiento, decisión, alarma y registro.</div></section>
+
+<section class="card" id="cctv"><div class="kicker">Fundamentos</div><h2>1. Sensores y detección en videovigilancia</h2><p>Una cámara de seguridad moderna puede incorporar sensores físicos, entradas de alarma y funciones de análisis de imagen. El instalador debe distinguir estos conceptos porque determinan el alcance, la configuración y el tipo de evento que puede generar el sistema.</p>
+<div class="cols">
+<div class="mini"><strong>Sensor de imagen CMOS</strong>Es el elemento que convierte la luz recibida por la óptica en información digital para formar la imagen.</div>
+<div class="mini"><strong>Sensor PIR</strong>Detecta cambios de radiación infrarroja asociados a cuerpos en movimiento. Algunos modelos de cámaras lo integran para apoyar la detección.</div>
+<div class="mini"><strong>Fotocélula / luz ambiental</strong>Permite al equipo gestionar cambios entre funcionamiento diurno, nocturno, IR o iluminación auxiliar según el diseño.</div>
+<div class="mini"><strong>Micrófono</strong>En equipos compatibles permite capturar audio y, según funciones disponibles, generar o complementar eventos.</div>
+<div class="mini"><strong>Entradas de alarma</strong>Permiten conectar contactos o sensores externos compatibles al sistema de cámara o grabador.</div>
+<div class="mini"><strong>Análisis de video</strong>No es necesariamente un sensor físico: el software analiza la imagen para detectar movimiento, cruce de línea, intrusión, personas o vehículos según el equipo.</div>
+</div></section>
+
+<section class="card half"><h2>2. Tipos de detección</h2><table><tr><th>Tecnología</th><th>Qué detecta</th></tr><tr><td>PIR</td><td>Cambios infrarrojos asociados al movimiento de cuerpos.</td></tr><tr><td>Video Motion Detection</td><td>Cambios entre imágenes o regiones del video.</td></tr><tr><td>Analítica inteligente</td><td>Eventos y clases de objetivo, según capacidades del modelo.</td></tr><tr><td>Sensor externo</td><td>Apertura, barrera, presencia u otra condición mediante entrada de alarma compatible.</td></tr></table></section>
+<section class="card half"><h2>3. Cadena de una alarma CCTV</h2><div class="diagram"><div class="flow"><div class="box"><b>Detección</b><br>sensor / video</div><span class="arrow">→</span><div class="box"><b>Análisis</b><br>cámara / NVR</div><span class="arrow">→</span><div class="box"><b>Evento</b><br>regla</div><span class="arrow">→</span><div class="box"><b>Respuesta</b><br>grabar / avisar</div></div></div><p>Una buena instalación configura no solo la imagen, sino también las reglas, horarios, sensibilidad, zonas, notificaciones y evidencias asociadas.</p></section>
+
+<section class="card" id="modelos"><div class="kicker">Referencias reales del mercado</div><h2>4. Familias y modelos de cámaras con funciones de detección y disuasión</h2>
+<table><tr><th>Fabricante / familia</th><th>Ejemplos de modelos</th><th>Funciones relevantes para estudiar</th></tr>
+<tr><td>Hikvision AcuSense</td><td>DS-2CD2046G2-IU/SL, DS-2CD2386G2-ISU/SL, DS-2CD2T46G2-ISU/SL</td><td>Clasificación de personas/vehículos en la familia AcuSense; determinados modelos incorporan luz estroboscópica y alarma de audio.</td></tr>
+<tr><td>Dahua TiOC IP</td><td>DH-IPC-HDW3449H-AS-PV-S3, DH-IPC-HFW3449T1-AS-PV-S3, variantes 5 MP y 8 MP de la misma familia</td><td>Disuasión activa, iluminación y funciones de detección según modelo.</td></tr>
+<tr><td>Dahua TiOC HDCVI</td><td>HAC-ME1809TQ-A-PV, HAC-ME1509TH-A-PV</td><td>Luz de advertencia, audio/alarma y disuasión activa según modelo.</td></tr></table>
+<div class="note"><strong>Regla profesional:</strong> nunca asumir funciones solo por la apariencia de la cámara. Se debe revisar la ficha técnica exacta del modelo, porque una misma familia puede tener variantes diferentes.</div></section>
+
+<section class="card"><h2>5. ¿Qué debe revisar un instalador?</h2><div class="cols"><div class="mini"><strong>Resolución y sensor de imagen</strong>MP, tamaño de sensor, rendimiento con poca luz y WDR.</div><div class="mini"><strong>Óptica</strong>Lente fija o varifocal y campo de visión requerido.</div><div class="mini"><strong>Detección</strong>PIR, VMD, analítica, cruce de línea, intrusión u otras funciones.</div><div class="mini"><strong>Alarma</strong>Sirena, luz, salida/entrada de alarma y notificaciones.</div><div class="mini"><strong>Red</strong>IP, PoE, ancho de banda, NVR y compatibilidad.</div><div class="mini"><strong>Entorno</strong>Altura, contraluz, lluvia, polvo, noche y zonas de interés.</div></div></section>
+
+<section class="card" id="arduino"><div class="kicker">Laboratorio técnico</div><h2>6. Arduino como simulador didáctico de una alerta de seguridad</h2><p>El HC-SR04 no pretende sustituir los sensores profesionales de una cámara. Se utiliza para que el estudiante comprenda físicamente la lógica de un sistema de seguridad: medir una condición, clasificar el nivel de riesgo y generar una respuesta.</p>
+<div class="status"><div class="state"><span class="dot green"></span><strong>VERDE | NORMAL</strong><p>Distancia mayor a 15 cm. LED verde encendido. Sin sonido.</p></div><div class="state"><span class="dot yellow"></span><strong>AMARILLO | PRECAUCIÓN</strong><p>Más de 7 cm y hasta 15 cm. LED amarillo y aviso corto/intermitente.</p></div><div class="state"><span class="dot red"></span><strong>ROJO | ALERTA</strong><p>7 cm o menos. LED rojo y buzzer continuo de mayor frecuencia.</p></div></div></section>
+
+<section class="card half"><h2>7. Componentes</h2><table><tr><th>Componente</th><th>Cantidad</th></tr><tr><td>Arduino UNO</td><td>1</td></tr><tr><td>HC-SR04</td><td>1</td></tr><tr><td>LED verde, amarillo y rojo</td><td>1 de cada uno</td></tr><tr><td>Resistencias 220 Ω</td><td>3</td></tr><tr><td>Buzzer piezoeléctrico</td><td>1</td></tr><tr><td>Protoboard y jumpers</td><td>1 juego</td></tr></table></section>
+<section class="card half"><h2>8. Pines de conexión</h2><table><tr><th>Elemento</th><th>Arduino</th></tr><tr><td>HC-SR04 TRIG</td><td>D9</td></tr><tr><td>HC-SR04 ECHO</td><td>D10</td></tr><tr><td>LED verde</td><td>D2</td></tr><tr><td>LED amarillo</td><td>D3</td></tr><tr><td>LED rojo</td><td>D4</td></tr><tr><td>Buzzer piezo</td><td>D6</td></tr></table><div class="note">Cada LED debe usar su resistencia limitadora. Todos los elementos deben compartir GND.</div></section>
+
+<section class="card"><h2>9. Secuencia de montaje</h2><div class="steps"><div class="step">Conectar 5 V y GND del Arduino a las líneas de alimentación de la protoboard.</div><div class="step">Conectar HC-SR04: VCC a 5 V, GND a GND, TRIG a D9 y ECHO a D10.</div><div class="step">Conectar los tres LED mediante resistencias de 220 Ω a D2, D3 y D4.</div><div class="step">Conectar el buzzer piezoeléctrico al pin D6 y GND.</div><div class="step">Revisar el circuito antes de energizar. Cargar el programa.</div><div class="step">Abrir Monitor Serial a 9600 baudios y comprobar las distancias.</div><div class="step">Probar las tres zonas: normal, precaución y alerta.</div></div></section>
+
+<section class="card"><h2>10. Programa completo Arduino UNO</h2><pre>const int TRIG = 9;
+const int ECHO = 10;
+const int LED_VERDE = 2;
+const int LED_AMARILLO = 3;
+const int LED_ROJO = 4;
+const int BUZZER = 6;
+
+float medirDistancia() {
+  digitalWrite(TRIG, LOW);
+  delayMicroseconds(2);
+  digitalWrite(TRIG, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(TRIG, LOW);
+
+  long tiempo = pulseIn(ECHO, HIGH, 30000);
+  if (tiempo == 0) return -1;
+  return tiempo * 0.0343 / 2.0;
+}
+
+void apagarSalidas() {
+  digitalWrite(LED_VERDE, LOW);
+  digitalWrite(LED_AMARILLO, LOW);
+  digitalWrite(LED_ROJO, LOW);
+  noTone(BUZZER);
+}
+
+void setup() {
+  pinMode(TRIG, OUTPUT);
+  pinMode(ECHO, INPUT);
+  pinMode(LED_VERDE, OUTPUT);
+  pinMode(LED_AMARILLO, OUTPUT);
+  pinMode(LED_ROJO, OUTPUT);
+  pinMode(BUZZER, OUTPUT);
+  Serial.begin(9600);
+}
+
+void loop() {
+  float distancia = medirDistancia();
+  apagarSalidas();
+
+  if (distancia &lt; 0) {
+    Serial.println(&quot;ERROR: sensor sin lectura&quot;);
+    delay(300);
+    return;
+  }
+
+  Serial.print(&quot;Distancia: &quot;);
+  Serial.print(distancia);
+  Serial.println(&quot; cm&quot;);
+
+  if (distancia &gt; 15) {
+    // NORMAL
+    digitalWrite(LED_VERDE, HIGH);
+  }
+  else if (distancia &gt; 7) {
+    // PRECAUCION: amarillo + aviso moderado/intermitente
+    digitalWrite(LED_AMARILLO, HIGH);
+    tone(BUZZER, 1200, 120);
+    delay(220);
+  }
+  else {
+    // ALERTA: rojo + aviso fuerte/continuo
+    digitalWrite(LED_ROJO, HIGH);
+    tone(BUZZER, 2000);
+  }
+
+  delay(180);
+}</pre><div class="note"><strong>Interpretación:</strong> la distancia funciona como variable de entrada; Arduino toma la decisión; los LED representan el estado y el piezo comunica acústicamente el nivel de riesgo.</div></section>
+
+<section class="card half"><h2>11. Caso resuelto: acceso restringido</h2><p><strong>Situación:</strong> se desea representar un perímetro de seguridad. Cuando una persona se aproxima, el sistema debe cambiar progresivamente el nivel de alerta.</p><p><strong>Solución:</strong> a más de 15 cm permanece verde; entre 7 y 15 cm cambia a amarillo con sonido breve; a 7 cm o menos cambia a rojo y mantiene una alarma continua.</p><p><strong>Relación con CCTV:</strong> una cámara o sistema real podría asociar un evento de intrusión con grabación, notificación, luz o sirena, dependiendo de sus capacidades.</p></section>
+<section class="card half"><h2>12. Pruebas que debe realizar el estudiante</h2><table><tr><th>Prueba</th><th>Distancia</th><th>Resultado esperado</th></tr><tr><td>1</td><td>25 cm</td><td>Verde / silencio</td></tr><tr><td>2</td><td>18 cm</td><td>Verde / silencio</td></tr><tr><td>3</td><td>12 cm</td><td>Amarillo / aviso</td></tr><tr><td>4</td><td>8 cm</td><td>Amarillo / aviso</td></tr><tr><td>5</td><td>5 cm</td><td>Rojo / alarma</td></tr></table><p>El estudiante debe registrar también la lectura real observada y explicar cualquier diferencia.</p></section>
+
+<section class="card"><h2>13. Cuestionario de aprendizaje</h2>
+<div class="quiz" data-a="b"><strong>1. ¿Cuál es la función de un sensor en un sistema?</strong><label><input type="radio" name="q1" value="a"> Solo almacenar video</label><label><input type="radio" name="q1" value="b"> Detectar una condición y entregar información al sistema</label><label><input type="radio" name="q1" value="c"> Sustituir el NVR</label></div>
+<div class="quiz" data-a="c"><strong>2. ¿Toda detección de movimiento de una cámara proviene de un PIR?</strong><label><input type="radio" name="q2" value="a"> Sí</label><label><input type="radio" name="q2" value="b"> Solo en cámaras IP</label><label><input type="radio" name="q2" value="c"> No; también puede provenir del análisis de video</label></div>
+<div class="quiz" data-a="a"><strong>3. En el prototipo, ¿qué representa el color rojo?</strong><label><input type="radio" name="q3" value="a"> Alerta crítica por proximidad</label><label><input type="radio" name="q3" value="b"> Equipo apagado</label><label><input type="radio" name="q3" value="c"> Red desconectada</label></div>
+<div class="quiz" data-a="b"><strong>4. ¿Qué pin se usa para TRIG en este laboratorio?</strong><label><input type="radio" name="q4" value="a"> D2</label><label><input type="radio" name="q4" value="b"> D9</label><label><input type="radio" name="q4" value="c"> D6</label></div>
+<div class="quiz" data-a="a"><strong>5. ¿Qué debe verificarse antes de elegir una cámara?</strong><label><input type="radio" name="q5" value="a"> La ficha técnica exacta y las funciones requeridas</label><label><input type="radio" name="q5" value="b"> Solo el color de la carcasa</label><label><input type="radio" name="q5" value="c"> Únicamente el precio</label></div>
+<button onclick="grade()">Calificar evaluación</button><div id="result" class="result"></div></section>
+
+<section class="card" id="proyecto"><div class="kicker">Evaluación práctica</div><h2>14. Trabajo final para presentar</h2><h3>Prototipo de alerta perimetral de tres niveles</h3><p>En equipos, diseñar y presentar un sistema con Arduino UNO, HC-SR04, semáforo de tres LED y buzzer piezoeléctrico. El prototipo debe representar el comportamiento de un sistema de detección aplicado a un acceso o perímetro protegido.</p>
+<div class="cols"><div class="mini"><strong>Diseño</strong>Plano o esquema de conexiones correctamente identificado.</div><div class="mini"><strong>Funcionamiento</strong>Verde normal, amarillo precaución con aviso y rojo alerta con sonido continuo.</div><div class="mini"><strong>Programación</strong>Código comentado y umbrales claramente definidos.</div><div class="mini"><strong>Validación</strong>Mínimo 8 pruebas de distancia registradas en una tabla.</div><div class="mini"><strong>Aplicación CCTV</strong>Proponer qué cámara, función de detección o entrada de alarma podría complementar el sistema.</div><div class="mini"><strong>Exposición</strong>Explicar entrada, procesamiento, decisión y respuesta.</div></div>
+<h3>Criterios de evaluación</h3><table><tr><th>Criterio</th><th>Peso</th></tr><tr><td>Funcionamiento del prototipo</td><td>30%</td></tr><tr><td>Conexiones y orden técnico</td><td>20%</td></tr><tr><td>Código y lógica de estados</td><td>20%</td></tr><tr><td>Pruebas y documentación</td><td>15%</td></tr><tr><td>Relación con videovigilancia</td><td>10%</td></tr><tr><td>Exposición</td><td>5%</td></tr></table></section>
+
+<section class="card"><h2>15. Referencias técnicas para ampliar</h2><p>El manual utiliza como ejemplos comerciales las familias Hikvision AcuSense y Dahua TiOC/Active Deterrence. Para una instalación real se recomienda consultar siempre la ficha técnica y documentación oficial correspondiente a la variante exacta del producto.</p></section>
+</div></div></main>
+<footer><strong>Instructor: Ing. Gunar Castro Iñigo</strong><br>CTP | Curso de Redes Informáticas y Videovigilancia</footer><script src="assets/app.js"></script></body></html>
